@@ -4,14 +4,15 @@ import { connectDB } from "./config/db";
 import { getEnvVariable } from "./utils/helpers";
 import cookieParser from "cookie-parser";
 import postofficeRoutes from "./routes/postoffice";
+import YAML from "yamljs";
+import swaggerUi from "swagger-ui-express";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const swaggerDocument = YAML.load("./swagger.yaml");
 
-// Connect Database
 connectDB();
 
-// Middlewares
 app.use(
   cors({
     origin: [getEnvVariable("FRONT_END_URL")],
@@ -23,14 +24,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// Root
 app.get("/", async (_req, res) => {
   res.send("Hai there, API is running...");
 });
 
 app.use("/api/postoffice", postofficeRoutes);
 
-// Start server
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
