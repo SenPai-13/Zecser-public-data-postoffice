@@ -30,6 +30,7 @@ app.get("/", async (_req, res) => {
 
 app.use("/postoffice", postofficeRoutes);
 
+//swagger
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.listen(PORT, () => {
