@@ -5,16 +5,6 @@
     "version": "1.0.0",
     "description": "Fetch post office details by branch name"
   },
-  "servers": [
-    {
-      "url": "http://localhost:3000",
-      "description": "Local development"
-    },
-    {
-      "url": "https://your-app-name.onrender.com",
-      "description": "Render deployment"
-    }
-  ],
   "paths": {
     "/postoffice/{branchName}": {
       "get": {
