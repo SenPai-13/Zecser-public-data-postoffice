@@ -5,7 +5,11 @@ info:
   description: Fetch post office details by branch name.
 
 servers:
-  - url: http://localhost:3000/api
+    - url: http://localhost:3000
+    description: Local development server
+    - url: https://zecser-public-data-postoffice.onrender.com/
+    description: Render production server
+
 
 paths:
   /postoffice/{branchName}:
