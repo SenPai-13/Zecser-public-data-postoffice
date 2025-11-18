@@ -6,10 +6,11 @@ import cookieParser from "cookie-parser";
 import postofficeRoutes from "./routes/postoffice";
 import YAML from "yamljs";
 import swaggerUi from "swagger-ui-express";
+import path from "path";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const swaggerDocument = YAML.load("./swagger.yaml");
+const swaggerDocument = YAML.load(path.join(__dirname, "../docs/swagger.yaml"));
 
 connectDB();
 
@@ -30,7 +31,7 @@ app.get("/", async (_req, res) => {
 
 app.use("/api/postoffice", postofficeRoutes);
 
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
