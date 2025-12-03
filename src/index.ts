@@ -9,7 +9,6 @@ import swaggerDocument from "./docs/swagger.json";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 connectDB();
 
